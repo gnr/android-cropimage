@@ -16,27 +16,21 @@
 
 package com.android.camera;
 
-import com.android.camera.R;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 
 import com.android.camera.gallery.IImage;
 
@@ -432,5 +426,28 @@ public class Util {
     // Returns Options that set the puregeable flag for Bitmap decode.
     public static BitmapFactory.Options createNativeAllocOptions() {
         return new BitmapFactory.Options();
+    }
+
+    public static int getRotationDegreesForExifOrientation(int exifOrientation) {
+        switch (exifOrientation) {
+            case ExifInterface.ORIENTATION_NORMAL:
+                return 0;
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                return 0;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return 180;
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                return 180;
+            case ExifInterface.ORIENTATION_TRANSPOSE:
+                return 90;
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return 90;
+            case ExifInterface.ORIENTATION_TRANSVERSE:
+                return -90;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return -90;
+            default:
+                return 0;
+        }
     }
 }

@@ -16,18 +16,20 @@
 
 package com.android.camera.gallery;
 
-import com.android.camera.BitmapManager;
-import com.android.camera.Util;
-
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
+import com.android.camera.BitmapManager;
+import com.android.camera.Util;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 class UriImage implements IImage {
@@ -93,6 +95,19 @@ class UriImage implements IImage {
             ParcelFileDescriptor pfdInput = getPFD();
             Bitmap b = Util.makeBitmap(minSideLength, maxNumberOfPixels,
                     pfdInput, useNative);
+
+            if (b != null && rotateAsNeeded) {
+                int exifOrientation = 0;
+                try {
+                    ExifInterface exif = new ExifInterface(mUri.getPath());
+                    exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                } catch (IOException e) {
+                    Log.e(TAG, "got exception getting exif interface ", e);
+                }
+
+                b = Util.rotate(b, Util.getRotationDegreesForExifOrientation(exifOrientation));
+            }
+
             return b;
         } catch (Exception ex) {
             Log.e(TAG, "got exception decoding bitmap ", ex);
