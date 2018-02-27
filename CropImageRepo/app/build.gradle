@@ -38,7 +38,7 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
 
     compile 'me.villani.lorenzo.android:android-cropimage:1.0.2'
 }
