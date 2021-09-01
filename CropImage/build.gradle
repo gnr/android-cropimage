@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 buildscript {
     repositories {
@@ -10,13 +10,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:7.0.2'
     }
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '29.0.3'
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         minSdkVersion 16
@@ -34,6 +34,7 @@ android {
 // Publishing
 //
 
+/*
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -44,3 +45,4 @@ uploadArchives {
         }
     }
 }
+*/
