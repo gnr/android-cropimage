@@ -16,15 +16,6 @@
 
 package com.android.camera;
 
-import com.android.camera.gallery.BaseImageList;
-import com.android.camera.gallery.IImage;
-import com.android.camera.gallery.IImageList;
-import com.android.camera.gallery.ImageList;
-import com.android.camera.gallery.ImageListUber;
-import com.android.camera.gallery.SingleImageList;
-import com.android.camera.gallery.VideoList;
-import com.android.camera.gallery.VideoObject;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -39,6 +30,15 @@ import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.util.Log;
+
+import com.android.camera.gallery.BaseImageList;
+import com.android.camera.gallery.IImage;
+import com.android.camera.gallery.IImageList;
+import com.android.camera.gallery.ImageList;
+import com.android.camera.gallery.ImageListUber;
+import com.android.camera.gallery.SingleImageList;
+import com.android.camera.gallery.VideoList;
+import com.android.camera.gallery.VideoObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
