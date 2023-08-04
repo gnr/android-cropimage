@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
 
 buildscript {
     repositories {
@@ -10,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
@@ -27,21 +26,6 @@ android {
         debugProguard {}
         release {}
     }
+    namespace 'com.android.camera'
 }
 
-//
-// Publishing
-//
-
-/*
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "file://repo")
-            pom.groupId = 'me.villani.lorenzo.android'
-            pom.artifactId = 'android-cropimage'
-            pom.version = '1.1.2'
-        }
-    }
-}
-*/
